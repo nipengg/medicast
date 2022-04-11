@@ -4,13 +4,31 @@ import axios from 'axios';
 
 import signinImage from '../assets/signup.jpg';
 
-const Auth = () => {
-    const [isSignup, setIsSignup] = useState(true)
+const initialState = {
+    fullName: '',
+    username: '',
+    password: '',
+    confirmPassword: '',
+    phoneNumber: '',
+    avatarURL: '',
+}
 
-    const handleChange = () => { }
+const Auth = () => {
+    const [form, setForm] = useState(initialState);
+    const [isSignup, setIsSignup] = useState(true);
+
+    const handleChange = (e) => {
+        setForm({...form, [e.target.name]: e.target.value});
+    }
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(form);
     }
 
     return (
@@ -18,7 +36,7 @@ const Auth = () => {
             <div className="auth__form-container_fields">
                 <div className="auth__form-container_fields-content">
                     <p>{isSignup ? 'Sign Up' : 'Sign In'}</p>
-                    <form onSubmit={{}}>
+                    <form onSubmit={handleSubmit}>
                         {isSignup && (
                             <div className="auth__form-container_fields-content_input">
                                 <label htmlFor="fullName">Full Name</label>
@@ -26,8 +44,8 @@ const Auth = () => {
                             </div>
                         )}
                         <div className="auth__form-container_fields-content_input">
-                            <label htmlFor="userName">Username</label>
-                            <input type="text" name="userName" placeholder="Username" onChange={handleChange} required />
+                            <label htmlFor="username">Username</label>
+                            <input type="text" name="username" placeholder="Username" onChange={handleChange} required />
                         </div>
                         {isSignup && (
                             <div className="auth__form-container_fields-content_input">
@@ -51,6 +69,11 @@ const Auth = () => {
                                 <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} required />
                             </div>
                         )}
+                        <div className="auth__form-container_fields-content_button">
+                            <button>
+                                { isSignup ? 'Sign Up' : 'Sign In'}
+                            </button>
+                        </div>
                     </form>
                     <div className="auth__form-container_fields-account">
                         <p>
