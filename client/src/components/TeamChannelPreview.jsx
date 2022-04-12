@@ -1,5 +1,5 @@
-import React from 'react'
-import { Avatar, useChatContext } from 'stream-chat-react'
+import React from 'react';
+import { Avatar, useChatContext } from 'stream-chat-react';
 
 const TeamChannelPreview = ({ channel, type, setToggleContainer, setIsCreating, setIsEditing, setActiveChannel }) => {
     const { channel: activeChannel, client } = useChatContext();
@@ -19,10 +19,10 @@ const TeamChannelPreview = ({ channel, type, setToggleContainer, setIsCreating, 
             <div className="channel-preview__item single">
                 <Avatar
                     image={members[0]?.user?.image}
-                    user={members[0]?.user?.fullname || members[0]?.user?.id}
+                    name={members[0]?.user?.fullName || members[0]?.user?.id}
                     size={24}
                 />
-                <p>{members[0]?.user?.fullname || members[0]?.user?.id}</p>
+                <p>{members[0]?.user?.fullName || members[0]?.user?.id}</p>
             </div>
         );
     }
